@@ -1,0 +1,20 @@
+#+title:   mvt-clj
+#+author:  David J. Neu
+#+startup: showall
+
+* Overview
+
+The mvt-clj, /minimum viable toolset/, library provides a small set of
+simple Clojure tools that combined with mvt-el, mvt-lein, and emacs
+with clojure-mode and inf-clojure, provide a simple repl driven
+development environment.
+
+* License
+
+This library includes an extension of [[https://github.com/joyofclojure/book-source/blob/master/first-edition/src/joy/breakpoint.clj][breakpoint.clj]] from [[http://joyofclojure.com/][The Joy of
+Clojure]], Copyright © 2014 Fogus and Houser.
+
+Copyright © 2019 David J. Neu
+
+Distributed under the Eclipse Public License, the same as Clojure.
+
