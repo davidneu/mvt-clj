@@ -6,17 +6,18 @@
    [prone.middleware :as prone]))
 
 (defn print-non-execution-error [e]
-  (print
-   (str
-    "\n"
-    (clojure.main/ex-str (clojure.main/ex-triage (Throwable->map e)))
-    "Location: "
-    (str/join
-     "\n"
-     (map
-      (fn [x] (str (:clojure.error/source (:data x)) ":" (:clojure.error/line (:data x))))
-      (filter (fn [x] (:clojure.error/source (:data x))) (:via (Throwable->map e)))))
-    "\n")))
+  (let [project-directory (clojure.string/replace (-> (java.io.File. ".") .getAbsolutePath) #"/.$" "/")]
+    (print
+     (str
+      "\n"
+      (clojure.main/ex-str (clojure.main/ex-triage (Throwable->map e)))
+      "Location: "
+      (str/join
+       "\n"
+       (map
+        (fn [x] (str (str/replace (:clojure.error/source (:data x)) project-directory "") ":" (:clojure.error/line (:data x))))
+        (filter (fn [x] (:clojure.error/source (:data x))) (:via (Throwable->map e)))))
+      "\n"))))
 
 (defn print-execution-error [e n]
   (let [{:keys [message type class-name frames]} (prone.stacks/normalize-exception e)]
