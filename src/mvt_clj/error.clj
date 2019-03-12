@@ -1,5 +1,6 @@
 (ns mvt-clj.error
   (:require
+   [clojure.main]
    [clojure.pprint :as pprint]
    [clojure.string :as str]
    [prone.middleware :as prone]))
