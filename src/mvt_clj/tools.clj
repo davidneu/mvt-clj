@@ -3,8 +3,8 @@
   [clojure.tools.namespace.repl]      
    [mvt-clj.error :refer [print-error]]))
 
-(defn reset []
-  (let [r (clojure.tools.namespace.repl/refresh)]
+(defn refresh [& options]
+  (let [r (apply clojure.tools.namespace.repl/refresh options)]
     (if (instance? Exception r)
       (print-error r)
       r)))
