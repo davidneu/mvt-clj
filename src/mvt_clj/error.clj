@@ -5,8 +5,6 @@
    [clojure.string :as str]
    [prone.middleware :as prone]))
 
- ;; TO DO: Try using working_dir: "${PWD}" in docker-compose.yml or in Dockerfile
-
 (defn format-resource [r]
   (-> r
       (str/replace "jar:file:" "")
@@ -35,7 +33,26 @@
 
 (defn print-execution-error [e n]
   (let [{:keys [message type class-name frames]} (prone.stacks/normalize-exception e)]
-    (print (str "\n" type ": " message))
+    (print (str "\n" (clojure.main/ex-str (clojure.main/ex-triage (Throwable->map e)))))
+    (let [{sym :clojure.error/symbol
+           src :clojure.error/source
+           line :clojure.error/line}
+          (clojure.main/ex-triage (Throwable->map e))]
+      (print
+       (str
+        "Location: "
+        (-> (str sym)
+            (str/split #"/")
+            (first)
+            (str/replace "-" "_")
+            (str/split #"\.")
+            (first)
+            (str "/" src)
+            (clojure.java.io/resource)
+            (str)
+            (str ":" line)
+            (format-resource)))))
+    (print "\nStacktrace:")
     (pprint/print-table
      ["Location" "Function"]
      (map
