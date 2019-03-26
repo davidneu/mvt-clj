@@ -1,4 +1,4 @@
-(defproject mvt-clj "0.1.5-SNAPSHOT"
+(defproject mvt-clj "0.1.6-SNAPSHOT"
   :description "A library in the mvt, minimum viable toolset, for repl driven Clojure development."
   :url "http://github.com/davidneu/mvt-clj"
   :license {:name "EPL-2.0"
