@@ -25,7 +25,9 @@
          (let [source (:clojure.error/source (:data x))]
            (if (str/starts-with? source "/")
              source
-             (format-resource (clojure.java.io/resource source))))
+             (if-let [resource (clojure.java.io/resource source)]
+               (format-resource resource)
+               source)))
          ":"
          (:clojure.error/line (:data x))))
       (filter (fn [x] (:clojure.error/source (:data x))) (:via (Throwable->map e)))))
