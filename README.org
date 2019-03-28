@@ -5,9 +5,25 @@
 * Overview
 
 The mvt-clj, /minimum viable toolset/, library provides a small set of
-simple Clojure tools that combined with mvt-el, mvt-lein, and emacs
-with clojure-mode and inf-clojure, provide a simple repl driven
-development environment.
+simple Clojure tools that combined with mvt-el and emacs with
+clojure-mode and inf-clojure, provide a simple repl driven development
+environment.
+
+* Installation
+
+Add the following dependency to your deps.edn file:
+
+mvt-clj {:mvn/version "0.1.6-SNAPSHOT"}
+
+or add the following dependency to your project.clj file:
+
+[mvt-clj "0.1.6-SNAPSHOT"]
+
+# [[https://img.shields.io/clojars/v/mvt-clj.svg]]
+
+* Usage
+
+See [[http://github.com/davidneu/mvt-eg/][mvt-eg]] for an example of how to use mvt-clj.
 
 * License
 
