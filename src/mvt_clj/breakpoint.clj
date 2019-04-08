@@ -1,4 +1,6 @@
-(ns mvt-clj.breakpoint)
+(ns mvt-clj.breakpoint
+  (:require
+   [clojure.main]))
 
 (def break? (atom false))
 
