@@ -2,4 +2,5 @@
  :deps
  {prone {:mvn/version "1.6.1"}
   org.clojure/tools.namespace {:mvn/version "0.2.11"}
-  clojure-complete {:mvn/version "0.2.5"}}}
+  clojure-complete {:mvn/version "0.2.5"}
+  eftest {:mvn/version "0.5.7"}}}
