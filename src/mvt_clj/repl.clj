@@ -8,7 +8,9 @@
   (clojure.main/repl
    :init
    (fn []
-     (require 'complete.core))
+     (require 'complete.core)
+     (set! *print-level* 10)
+     (set! *print-length* 10))
    :caught
    (fn [e]
      (print-error e))))
@@ -21,7 +23,9 @@
    :init
    (fn []
      (clojure.core.server/repl-init)
-     (require 'complete.core))
+     (require 'complete.core)
+     (set! *print-level* 10)
+     (set! *print-length* 10))
    :read clojure.core.server/repl-read
    :caught
    (fn [e]
