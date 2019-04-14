@@ -1,4 +1,7 @@
-{:deps
+{:paths
+ ["src" "dev" "test"]
+
+ :deps
  {org.clojure/clojure {:mvn/version "1.10.1-beta2"}
   org.clojure/tools.namespace {:mvn/version "0.2.11"}
   clojure-complete {:mvn/version "0.2.5"}
