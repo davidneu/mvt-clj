@@ -1,7 +1,13 @@
 {:deps
- {org.clojure/clojure {:mvn/version "1.10.1-beta1"}
+ {org.clojure/clojure {:mvn/version "1.10.1-beta2"}
   org.clojure/tools.namespace {:mvn/version "0.2.11"}
   clojure-complete {:mvn/version "0.2.5"}
   prone {:mvn/version "1.6.1"}
   clojure.java-time {:mvn/version "0.3.2"}
-  eftest {:mvn/version "0.5.7"}}}
+  eftest {:mvn/version "0.5.7"}}
+
+ :aliases
+ {:socket {:jvm-opts ["-Xms2g"
+                      "-Xmx2g"
+                      "-server"
+                      "-Dclojure.server.repl={:port,5555,:accept,mvt-clj.repl/socket-repl}"]}}}
