@@ -9,10 +9,25 @@
 ;; (clojure.tools.namespace.repl/disable-unload!)
 
 (defn refresh [& options]
+  (clojure.tools.namespace.repl/set-refresh-dirs "dev" "src" "test")
   (let [r (apply clojure.tools.namespace.repl/refresh options)]
     (if (instance? Exception r)
       (mvt-clj.error/print-error r)
       r)))
+
+(defn dev []
+  (refresh)
+  (in-ns 'dev)
+  :ok)
+
+(defn reset
+  [ns]
+  (let [reset-fn (ns-resolve ns 'reset)]
+    (if (nil? reset-fn)
+      (do
+        (println (format "\n***** %s/reset not found - running mvt-clj.tools/refresh *****\n" ns))
+        (refresh))
+      (reset-fn))))
 
 (defn testit []
   (binding [clojure.test/*test-out* *out*]

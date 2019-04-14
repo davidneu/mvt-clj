@@ -10,7 +10,8 @@
    (fn []
      (require 'complete.core)
      (set! *print-level* 10)
-     (set! *print-length* 10))
+     (set! *print-length* 10)
+     (println "***** Type (dev) to get started. *****\n"))
    :caught
    (fn [e]
      (print-error e))))
@@ -25,7 +26,8 @@
      (clojure.core.server/repl-init)
      (require 'complete.core)
      (set! *print-level* 10)
-     (set! *print-length* 10))
+     (set! *print-length* 10)
+     (println "***** Type (dev) to get started. *****\n"))
    :read clojure.core.server/repl-read
    :caught
    (fn [e]
