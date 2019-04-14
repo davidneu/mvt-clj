@@ -2,16 +2,19 @@
   (:require
    [mvt-clj.error :refer [print-error]]))
 
+(defn init []
+  (require 'complete.core)
+  (set! *print-level* 10)
+  (set! *print-length* 10)
+  (println "***** Type (dev) to get started. *****\n"))
+
 (defn repl
   "REPL with customized :init and :caught options."
   []
   (clojure.main/repl
    :init
    (fn []
-     (require 'complete.core)
-     (set! *print-level* 10)
-     (set! *print-length* 10)
-     (println "***** Type (dev) to get started. *****\n"))
+     (init))
    :caught
    (fn [e]
      (print-error e))))
@@ -24,10 +27,7 @@
    :init
    (fn []
      (clojure.core.server/repl-init)
-     (require 'complete.core)
-     (set! *print-level* 10)
-     (set! *print-length* 10)
-     (println "***** Type (dev) to get started. *****\n"))
+     (init))
    :read clojure.core.server/repl-read
    :caught
    (fn [e]
