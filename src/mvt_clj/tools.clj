@@ -9,7 +9,8 @@
 ;; (clojure.tools.namespace.repl/disable-unload!)
 
 (defn refresh [& options]
-  (clojure.tools.namespace.repl/set-refresh-dirs "dev" "src" "test")
+  (clojure.tools.namespace.repl/set-refresh-dirs "src" "test")
+  ;; (clojure.tools.namespace.repl/set-refresh-dirs "dev" "src" "test")
   (let [r (apply clojure.tools.namespace.repl/refresh options)]
     (if (instance? Exception r)
       (mvt-clj.error/print-error r)
