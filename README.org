@@ -27,8 +27,9 @@ See [[http://github.com/davidneu/mvt-eg/][mvt-eg]] for an example of how to use 
 
 * License
 
-This library includes an extension of [[https://github.com/joyofclojure/book-source/blob/master/first-edition/src/joy/breakpoint.clj][breakpoint.clj]] from [[http://joyofclojure.com/][The Joy of
-Clojure]], Copyright © 2014 Fogus and Houser.
+This library includes a modified version of
+https://github.com/technomancy/limit-break, Copyright © 2009-2012 Alex
+Osborne, George Jahad, and Phil Hagelberg.
 
 Copyright © 2019 David J. Neu
 
