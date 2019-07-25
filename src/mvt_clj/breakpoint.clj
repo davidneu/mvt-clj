@@ -40,17 +40,25 @@
           :else
           input)))
 
-(defmacro break []
-  `(when @break?
-     (let [eval-fn# (partial eval-with-locals (local-bindings))]
-       (binding
-           [*level* (inc *level*)]
-           (clojure.main/repl
-            ;; :prompt #(print (format "debug-%d=> " *level*))
-            :prompt #(print
-                      (if (= *level* 1)
-                        "debug=> "
-                        (format "debug-%d=> " *level*)))
-            :read readr
-            :eval eval-fn#)))))
+;; Usage: (break) or (break 'namespace-to-switch-to.core),
+;; i.e. optionally pass in the namespace to switch to as a symbol.
+(defmacro break
+  ([] `(break (ns-name *ns*)))
+  ([new-namespace-name]
+   `(when @break?
+      (let [namespace-name# (ns-name *ns*)]
+        (when (not= ~new-namespace-name namespace-name#)
+          (in-ns ~new-namespace-name))
+        (let [eval-fn# (partial eval-with-locals (local-bindings))]
+          (binding
+              [*level* (inc *level*)]
+              (clojure.main/repl
+               :prompt #(print
+                         (if (= *level* 1)
+                           (format "%s:debug=> " (str *ns*))
+                           (format "%s:debug-%d=> " (str *ns*) *level*)))
+               :read readr
+               :eval eval-fn#)))
+        (when (not= ~new-namespace-name namespace-name#)
+          (in-ns namespace-name#))))))
 
